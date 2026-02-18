@@ -1,0 +1,73 @@
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.iconWrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--primary-light, #ebf4ff);
+    color: var(--card-accent, var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    margin-top: 0.25rem;
+}
+
+.value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: -0.03em;
+}
+
+.subtext {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+}
+
+.trend {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    color: var(--success);
+}
+
+.trendValue {
+    font-weight: 600;
+}
+
+.trendLabel {
+    color: var(--muted-light);
+}

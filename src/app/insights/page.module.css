@@ -1,0 +1,371 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.courseBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #c53030;
+    background: #fff5f5;
+    padding: 0.35rem 0.75rem;
+    border-radius: 99px;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+    border: 1px solid #feb2b2;
+}
+
+.title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 750px;
+}
+
+/* Section styles */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.sectionDesc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 700px;
+}
+
+/* ═══ N-Model Layers Grid ═══ */
+.layersGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .layersGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .layersGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.layerCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.25s ease;
+}
+
+.layerCard:hover {
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.layerHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.layerIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.layerLabel {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.layerDesc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.layerElements {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.layerElements li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--foreground);
+    line-height: 1.4;
+}
+
+/* ═══ Conflicts Grid ═══ */
+.conflictsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.conflictCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.conflictCard:hover {
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+.conflictLayers {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.conflictDesc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+/* ═══ Timeline ═══ */
+.timeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: stretch;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+.timelineItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 180px;
+}
+
+.timelineStep {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.timelineContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.timelineName {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--foreground);
+    line-height: 1.3;
+}
+
+.timelineDays {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+    width: fit-content;
+}
+
+.timelineArrow {
+    color: var(--muted-light);
+    flex-shrink: 0;
+}
+
+/* ═══ Intervention Cards ═══ */
+.recsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .recsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.recCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.25s ease;
+    border-left: 3px solid var(--primary);
+}
+
+.recCard:hover {
+    box-shadow: 0 8px 24px -6px rgba(43, 108, 176, 0.12);
+    transform: translateY(-2px);
+}
+
+.recIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1.3;
+}
+
+.recDesc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+    flex: 1;
+}
+
+.recMeta {
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.recLayers {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.recMetaBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recImpact {
+    font-size: 0.78rem;
+    color: var(--foreground);
+}
+
+.recTimeline {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ═══ Sources Footer ═══ */
+.sourcesFooter {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.sourcesFooter h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-bottom: 0.75rem;
+}
+
+.sourcesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sourcesList span {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--background);
+    border-radius: 4px;
+    color: var(--muted);
+}
+
+.courseNote {
+    font-size: 0.75rem;
+    color: var(--muted-light);
+    font-style: italic;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+}
