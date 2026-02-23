@@ -6,7 +6,8 @@ import {
     Clock, TrendingDown, Lightbulb, AlertTriangle, CheckCircle,
     ArrowRight, BarChart3, Timer, Dog, BookOpen, Monitor, Users,
     Building2, Zap, Layers, Network, Cog, HeartPulse, Scale,
-    GraduationCap, Landmark, Route, GitBranch, Target, CircleDot
+    GraduationCap, Landmark, Route, GitBranch, Target, CircleDot,
+    ShieldAlert, MessageCircleWarning, MapPinned, ThumbsUp, ThumbsDown, Minus
 } from "lucide-react";
 
 /* ═══════════════════════════════════════════════════
@@ -75,7 +76,7 @@ const systemLayers = [
         elements: [
             { da: "98 kommuner (decentraliseret ansvar)", en: "98 municipalities (decentralized responsibility)" },
             { da: "IBOS: 130 medarbejdere, national", en: "IBOS: 130 employees, national scope" },
-            { da: "Dansk Blindesamfund: 11.000+ medlemmer", en: "Danish Association of the Blind: 11,000+ members" },
+            { da: "Dansk Blindesamfund: 7.500+ medlemmer", en: "Danish Association of the Blind: 7,500+ members" },
             { da: "Nota: 289.714 medlemmer", en: "Nota: 289,714 members" },
             { da: "Kennedy Centret: børnesynsregister", en: "Kennedy Center: children's vision registry" },
             { da: "DPOD: 34 organisationer, 330.000+ medl.", en: "DPOD: 34 organizations, 330,000+ members" },
@@ -242,6 +243,266 @@ const interventions = [
     },
 ];
 
+/* ═══════════════════════════════════════════════════
+   Reality Gap — official vs. reported timelines
+   ═══════════════════════════════════════════════════ */
+const realityGap = [
+    {
+        id: "kc-wait",
+        institutionDa: "Kommunikationscentret, Region Hovedstaden",
+        institutionEn: "Kommunikationscentret, Capital Region",
+        processDa: "Ventetid på synsfaglig vurdering og specialundervisning",
+        processEn: "Wait time for vision assessment and specialized education",
+        officialDa: "6-10 uger",
+        officialEn: "6-10 weeks",
+        officialSourceDa: "Officiel information fra Kommunikationscentret",
+        officialSourceEn: "Official information from Kommunikationscentret",
+        realityDa: "6-12 måneder",
+        realityEn: "6-12 months",
+        realitySourceDa: "Rapporteret af borgere i Lyngby-Taarbæk",
+        realitySourceEn: "Reported by citizens in Lyngby-Taarbæk",
+        factorDa: "4-5× længere end oplyst",
+        factorEn: "4-5× longer than stated",
+        notesDa: "Borgere oplever at det reelle forløb fra første kontakt til afsluttet specialundervisning tager markant længere end de officielle estimater. Årsagen tilskrives ventelister, kapacitetsmangel og manglende koordinering mellem kommune og center.",
+        notesEn: "Citizens experience that the actual process from first contact to completed specialized education takes significantly longer than official estimates. Causes attributed to waiting lists, capacity shortages, and lack of coordination between municipality and center.",
+        color: "#e53e3e",
+        severity: "critical",
+    },
+    {
+        id: "cso-sagsbehandling",
+        institutionDa: "Center for Sundhed og Omsorg, Lyngby-Taarbæk",
+        institutionEn: "Center for Health & Care, Lyngby-Taarbæk",
+        processDa: "Sagsbehandlingstid for hjælpemiddelansøgning",
+        processEn: "Processing time for assistive device applications",
+        officialDa: "14-28 dage",
+        officialEn: "14-28 days",
+        officialSourceDa: "Servicelovens retningslinjer og kommunal målsætning",
+        officialSourceEn: "Social Services Act guidelines and municipal targets",
+        realityDa: "2-4 måneder",
+        realityEn: "2-4 months",
+        realitySourceDa: "Erfaringer fra borgere og pårørende",
+        realitySourceEn: "Experiences from citizens and relatives",
+        factorDa: "3-4× længere end oplyst",
+        factorEn: "3-4× longer than stated",
+        notesDa: "Særligt komplekse sager (elektroniske hjælpemidler, skærmlæsere, specialoptik) kræver ofte flere runder med dokumentation og specialistvurdering, der forlænger den reelle sagsbehandlingstid langt ud over den officielle målsætning.",
+        notesEn: "Particularly complex cases (electronic aids, screen readers, specialized optics) often require multiple rounds of documentation and specialist assessment, extending actual processing time far beyond the official target.",
+        color: "#dd6b20",
+        severity: "high",
+    },
+    {
+        id: "guide-dog",
+        institutionDa: "Dansk Blindesamfund / kommunal bevilling",
+        institutionEn: "Danish Association of the Blind / municipal grant",
+        processDa: "Ventetid på førerhund efter godkendelse",
+        processEn: "Wait time for guide dog after approval",
+        officialDa: "6-12 måneder",
+        officialEn: "6-12 months",
+        officialSourceDa: "Dansk Blindesamfund",
+        officialSourceEn: "Danish Association of the Blind",
+        realityDa: "2-4 år",
+        realityEn: "2-4 years",
+        realitySourceDa: "Aktuelle ventelister og brugerrapporter",
+        realitySourceEn: "Current waiting lists and user reports",
+        factorDa: "3-4× længere end oplyst",
+        factorEn: "3-4× longer than stated",
+        notesDa: "Med kun 20-25 førerhunde uddannet årligt og en langt højere efterspørgsel, er den reelle ventetid for mange borgere flere år. Nogle borgere rapporterer at de aldrig modtager en førerhund og i stedet må finde alternative løsninger.",
+        notesEn: "With only 20-25 guide dogs trained annually and far higher demand, the actual wait time for many citizens is several years. Some citizens report never receiving a guide dog and instead having to find alternative solutions.",
+        color: "#6b46c1",
+        severity: "high",
+    },
+    {
+        id: "digital-access",
+        institutionDa: "Lyngby-Taarbæk Kommune (ltk.dk)",
+        institutionEn: "Lyngby-Taarbæk Municipality (ltk.dk)",
+        processDa: "Tilgængelighed af kommunens digitale selvbetjening",
+        processEn: "Accessibility of municipal digital self-service",
+        officialDa: "Delvis tilgængelig (WCAG 2.1 AA)",
+        officialEn: "Partially accessible (WCAG 2.1 AA)",
+        officialSourceDa: "Kommunens tilgængelighedserklæring",
+        officialSourceEn: "Municipality's accessibility statement",
+        realityDa: "Væsentlige barrierer for skærmlæserbrugere",
+        realityEn: "Significant barriers for screen reader users",
+        realitySourceDa: "Test med borgere der bruger JAWS/NVDA",
+        realitySourceEn: "Testing with citizens using JAWS/NVDA",
+        factorDa: "Ikke-funktionelt for mange brugere",
+        factorEn: "Non-functional for many users",
+        notesDa: "Selvom kommunen officielt erklærer delvis tilgængelighed, viser tests med reelle skærmlæserbrugere at centrale selvbetjeningsfunktioner (hjælpemiddelansøgning, handicapkørsel-bestilling) har kritiske barrierer der kræver assistance fra seende.",
+        notesEn: "Although the municipality officially declares partial accessibility, tests with actual screen reader users show that key self-service functions (assistive device applications, disability transport booking) have critical barriers requiring assistance from sighted persons.",
+        color: "#2b6cb0",
+        severity: "medium",
+    },
+    {
+        id: "full-journey",
+        institutionDa: "Hele systemet — samlet forløb",
+        institutionEn: "Full system — complete journey",
+        processDa: "Tid fra synstab-diagnose til fuld rehabilitering",
+        processEn: "Time from vision loss diagnosis to full rehabilitation",
+        officialDa: "3-6 måneder",
+        officialEn: "3-6 months",
+        officialSourceDa: "Akkumuleret fra officielle procesestimater",
+        officialSourceEn: "Accumulated from official process estimates",
+        realityDa: "1,5-3 år",
+        realityEn: "1.5-3 years",
+        realitySourceDa: "Brugerstudier og interviews i Lyngby-Taarbæk",
+        realitySourceEn: "User studies and interviews in Lyngby-Taarbæk",
+        factorDa: "5-6× længere end oplyst",
+        factorEn: "5-6× longer than stated",
+        notesDa: "Når man sammenlægger alle delsystemer — kommunal sagsbehandling, specialistvurdering, hjælpemiddelbevilling, rehabilitering, opfølgning — er den samlede brugerrejse dramatisk længere end de individuelle officielle estimater lægger op til. Forskellen skyldes ventetider mellem systemerne, manglende overlevering og kulturel accept af langsom proces.",
+        notesEn: "When combining all subsystems — municipal case processing, specialist assessment, device granting, rehabilitation, follow-up — the total user journey is dramatically longer than individual official estimates suggest. The difference is due to wait times between systems, lack of handover coordination, and cultural acceptance of slow processes.",
+        color: "#e53e3e",
+        severity: "critical",
+    },
+];
+
+const severityLabels = {
+    critical: { da: "Kritisk afvigelse", en: "Critical gap", color: "#c53030", bg: "#fff5f5" },
+    high: { da: "Stor afvigelse", en: "Major gap", color: "#dd6b20", bg: "#fffaf0" },
+    medium: { da: "Moderat afvigelse", en: "Moderate gap", color: "#d69e2e", bg: "#fffff0" },
+};
+
+/* ═══════════════════════════════════════════════════
+   Municipal Benchmarking — Lyngby vs København vs DK
+   ═══════════════════════════════════════════════════ */
+const benchmarkDimensions = [
+    {
+        id: "specialist",
+        dimDa: "Specialistadgang (syn)",
+        dimEn: "Specialist access (vision)",
+        lyngbyDa: "Via Kommunikationscentret i Hillerød (CKU). Kræver kommunal henvisning eller øjenlæge. Centret dækker 11 kommuner — begrænset kapacitet.",
+        lyngbyEn: "Via Kommunikationscentret in Hillerød (CKU). Requires municipal referral or eye doctor. Center covers 11 municipalities — limited capacity.",
+        lyngbyScore: "poor",
+        cphDa: "Dobbelt adgang: IBOS (18-65 år, 130 medarbejdere, direkte kontakt) + CSV (0-18 og 65+, åben konsultation torsdage 10-11:30). Akutservice: 5 hverdages responstid.",
+        cphEn: "Dual access: IBOS (18-65 yrs, 130 employees, direct contact) + CSV (0-18 and 65+, open consultation Thursdays 10-11:30). Acute service: 5 workday response.",
+        cphScore: "good",
+        dkDa: "\"Postnummerlotteriet\" — kvaliteten afhænger af kommunen. Mange små kommuner mangler specialviden. Dansk Blindesamfund kræver nationale standarder.",
+        dkEn: "\"Postcode lottery\" — quality depends on municipality. Many small municipalities lack specialist knowledge. Danish Association of the Blind demands national standards.",
+        dkScore: "mixed",
+    },
+    {
+        id: "processing",
+        dimDa: "Sagsbehandlingstid (hjælpemidler)",
+        dimEn: "Case processing time (assistive devices)",
+        lyngbyDa: "Officielt 14-28 dage. Reelt 2-4 måneder for komplekse sager (skærmlæsere, specialoptik). Ingen offentliggjorte ventetider.",
+        lyngbyEn: "Official 14-28 days. Actually 2-4 months for complex cases (screen readers, specialized optics). No published wait times.",
+        lyngbyScore: "poor",
+        cphDa: "20 hverdage standard, 40 hverdage med yderligere oplysninger. Differentierede frister: 5 hverdage for genansøgninger. Offentliggjorte frister på kk.dk med 80-90% overholdelsesmål.",
+        cphEn: "20 workdays standard, 40 workdays with additional info. Differentiated deadlines: 5 workdays for re-applications. Published deadlines on kk.dk with 80-90% compliance target.",
+        cphScore: "good",
+        dkDa: "Varierer ekstremt: Kolding 2 måneder, Hjørring 6 uger, enkelte kommuner 3+ måneder. Ankestyrelsen identificerer systematisk fristoverskridelse som nationalt problem.",
+        dkEn: "Varies extremely: Kolding 2 months, Hjørring 6 weeks, some municipalities 3+ months. Appeals Board identifies systematic deadline violations as a national problem.",
+        dkScore: "poor",
+    },
+    {
+        id: "acute",
+        dimDa: "Akut respons ved pludseligt synstab",
+        dimEn: "Acute response for sudden vision loss",
+        lyngbyDa: "Ingen dedikeret akutservice for synstab. Standard sagsbehandling også for akutte tilfælde. Borgere må vente på almindelig sagsg ang.",
+        lyngbyEn: "No dedicated acute service for vision loss. Standard processing also for acute cases. Citizens must wait through regular case flow.",
+        lyngbyScore: "poor",
+        cphDa: "IBOS tilbyder gratis akutservice inden for 5 hverdage for borgere med pludseligt synstab. Københavnere kan kontakte IBOS’ synskonsulenter direkte.",
+        cphEn: "IBOS offers free acute service within 5 workdays for citizens with sudden vision loss. Copenhagen residents can contact IBOS vision consultants directly.",
+        cphScore: "good",
+        dkDa: "Ingen national standard for akut synstabs-respons. Afhænger af kommunens kapacitet og kendskab til IBOS/VISO-tilbud. Forskning viser forsinkelse >30 dage reducerer rehabiliteringsresultater markant.",
+        dkEn: "No national standard for acute vision loss response. Depends on municipality capacity and awareness of IBOS/VISO services. Research shows delays >30 days significantly reduce rehabilitation outcomes.",
+        dkScore: "poor",
+    },
+    {
+        id: "wait-specialist",
+        dimDa: "Ventetid på specialistvurdering",
+        dimEn: "Wait time for specialist assessment",
+        lyngbyDa: "Kommunikationscentret: officielt 6-10 uger, reelt 6-12 måneder. Ingen offentliggjorte ventetider. Borgere må selv følge op.",
+        lyngbyEn: "Kommunikationscentret: officially 6-10 weeks, actually 6-12 months. No published wait times. Citizens must follow up themselves.",
+        lyngbyScore: "poor",
+        cphDa: "CSV offentliggør reelle ventetider: optisk vurdering 50 dage, visitationssamtale 132 dage, IT-synsundervisning 91 dage, hjælnepunkmåledstest 56 dage. Gennemsigtighed!",
+        cphEn: "CSV publishes real wait times: optical assessment 50 days, visitation interview 132 days, IT vision teaching 91 days, device testing 56 days. Transparency!",
+        cphScore: "mixed",
+        dkDa: "Ingen national rapportering af ventetider på synsområdet. Borgere med synshandicap kan opleve op til 5 års ventetid på kommunal beskæftigelseshjælp ifølge Folketingets høringer.",
+        dkEn: "No national reporting of wait times for vision services. Citizens with visual impairment can experience up to 5 years wait for municipal employment help according to Parliament hearings.",
+        dkScore: "poor",
+    },
+    {
+        id: "transport",
+        dimDa: "Handicapkørsel for blinde",
+        dimEn: "Disability transport for blind citizens",
+        lyngbyDa: "104 enkeltture/år via Movia Flextrafik. Blinde med synsrest ≤10% (6/60). Standard lovkrav — ingen ekstra ture.",
+        lyngbyEn: "104 single trips/year via Movia Flextrafik. Blind with visual acuity ≤10% (6/60). Standard legal minimum — no extra trips.",
+        lyngbyScore: "mixed",
+        cphDa: "104 ture + mulighed for ansøgning om 20 ekstra ture/år ved særligt behov. Abonnement 300 kr/år (2025). Både Socialforvaltning (<65) og Sundhed & Omsorg (65+) håndterer.",
+        cphEn: "104 trips + option to apply for 20 extra trips/year for special needs. Subscription 300 DKK/year (2025). Both Social Services (<65) and Health & Care (65+) handle.",
+        cphScore: "good",
+        dkDa: "Lovgivningen kræver minimum 104 enkeltture. Kommuner kan tilbyde mere, men få gør det proaktivt. Ansøgningsproces og dokumentation varierer.",
+        dkEn: "Legislation requires minimum 104 single trips. Municipalities can offer more, but few do proactively. Application process and documentation varies.",
+        dkScore: "mixed",
+    },
+    {
+        id: "digital",
+        dimDa: "Digital tilgængelighed",
+        dimEn: "Digital accessibility",
+        lyngbyDa: "ltk.dk erklærer \"delvis tilgængelighed\" men reelle skærmlæsertests afslører kritiske barrierer i selvbetjening (hjælpemiddelansøgning, handicapkørsel).",
+        lyngbyEn: "ltk.dk declares \"partial accessibility\" but real screen reader tests reveal critical barriers in self-service (device applications, disability transport).",
+        lyngbyScore: "poor",
+        cphDa: "kk.dk har dedikeret tilgængelighedsteam og offentliggjort tilgængelighedserklæring. CSV tilbyder IT-synsundervisning (91 dages ventetid) så borgere kan bruge digitale løsninger.",
+        cphEn: "kk.dk has dedicated accessibility team and published accessibility statement. CSV offers IT vision teaching (91 day wait) so citizens can use digital solutions.",
+        cphScore: "mixed",
+        dkDa: "65% af offentlige websites opfylder ikke WCAG-krav trods lovgivning. EU Accessibility Act (EAA) træder i kraft juni 2025 — forventes at øge presset.",
+        dkEn: "65% of public websites fail WCAG requirements despite legislation. EU Accessibility Act (EAA) takes effect June 2025 — expected to increase pressure.",
+        dkScore: "poor",
+    },
+    {
+        id: "employment",
+        dimDa: "Beskæftigelsesindsats for synshandicappede",
+        dimEn: "Employment support for visually impaired",
+        lyngbyDa: "Ingen specialiseret beskæftigelsesindsats for synshandicappede. Standard jobcenter-planlægning uden synsfaglig ekspertise.",
+        lyngbyEn: "No specialized employment support for visually impaired. Standard job center planning without vision expertise.",
+        lyngbyScore: "poor",
+        cphDa: "IBOS tilbyder integreret beskæftigelsesrehabilintering med IKT-undervisning, neurooptometrisk vurdering og karriererådgivning. Direkte samarbejde med arbejdsgivere.",
+        cphEn: "IBOS offers integrated employment rehabilitation with ICT teaching, neuro-optometric assessment, and career counseling. Direct collaboration with employers.",
+        cphScore: "good",
+        dkDa: "50%+ af synshandicappede 16-64 år mangler arbejdsmarkedsuddannelse (dobbelt så mange som normalbefolkningen). Op til 5 års ventetid på kommunal beskæftigelseshjælp.",
+        dkEn: "50%+ of visually impaired aged 16-64 lack labor market education (double the general population). Up to 5 year wait for municipal employment help.",
+        dkScore: "poor",
+    },
+];
+
+const benchmarkInsights = [
+    {
+        typeDa: "København gør bedre",
+        typeEn: "Copenhagen does better",
+        type: "better",
+        items: [
+            { da: "Direkte IBOS-adgang for borgere 18-65 — ingen kommunal henvisning nødvendig for rådgivning", en: "Direct IBOS access for citizens 18-65 — no municipal referral needed for counseling" },
+            { da: "Akutservice: 5 hverdages respons ved pludseligt synstab (IBOS)", en: "Acute service: 5 workday response for sudden vision loss (IBOS)" },
+            { da: "CSV offentliggør reelle ventetider på kk.dk — fuld gennemsigtighed for borgere", en: "CSV publishes real wait times on kk.dk — full transparency for citizens" },
+            { da: "Åben konsultation hos synskonsulent uden aftale (torsdage 10-11:30)", en: "Open consultation with vision consultant without appointment (Thursdays 10-11:30)" },
+            { da: "Differentierede sagsbehandlingsfrister: 5 hverdage for genansøgninger", en: "Differentiated processing deadlines: 5 workdays for re-applications" },
+            { da: "Integreret beskæftigelsesrehabilitering via IBOS (IKT + karriererådgivning)", en: "Integrated employment rehabilitation via IBOS (ICT + career counseling)" },
+        ],
+    },
+    {
+        typeDa: "Lyngby-Taarbæk mangler",
+        typeEn: "Lyngby-Taarbæk lacks",
+        type: "worse",
+        items: [
+            { da: "Ingen akutservice for pludseligt synstab — standard sagsgang også i akutte tilfælde", en: "No acute service for sudden vision loss — standard processing even in acute cases" },
+            { da: "Ingen offentliggjorte ventetider — borgere kan ikke planlægge eller følge op", en: "No published wait times — citizens cannot plan or follow up" },
+            { da: "Afhængighed af Kommunikationscentret i Hillerød (11 kommuner, 1 center)", en: "Dependency on Kommunikationscentret in Hillerød (11 municipalities, 1 center)" },
+            { da: "Ingen specialiseret beskæftigelsesindsats — standard jobcenter uden synsfaglig viden", en: "No specialized employment support — standard job center without vision expertise" },
+            { da: "Kritiske tilgængelighedsbarrierer på ltk.dk for skærmlæserbrugere", en: "Critical accessibility barriers on ltk.dk for screen reader users" },
+        ],
+    },
+    {
+        typeDa: "Fælles nationale udfordringer",
+        typeEn: "Shared national challenges",
+        type: "shared",
+        items: [
+            { da: "Sektoransvarsprincippet skaber 98 forskellige systemer — \"postnummerlotteriet\"", en: "Sector responsibility principle creates 98 different systems — \"postcode lottery\"" },
+            { da: "Ingen centralt synsregister — 32.000 estimerede borgere, reel data ukendt", en: "No central vision registry — 32,000 estimated citizens, real data unknown" },
+            { da: "65% af offentlige websites opfylder ikke WCAG-krav", en: "65% of public websites fail WCAG requirements" },
+            { da: "20-25 førerhunde/år på landsplan — kritisk underkapacitet", en: "20-25 guide dogs/year nationally — critical under-capacity" },
+        ],
+    },
+];
+
 const statusColors = {
     fast: { bg: "#f0fff4", color: "#276749" },
     ok: { bg: "#ebf4ff", color: "#2b6cb0" },
@@ -364,6 +625,158 @@ export default function InsightsPage() {
                                     </span>
                                 </div>
                                 {item.step < 7 && <ArrowRight size={16} className={styles.timelineArrow} />}
+                            </div>
+                        );
+                    })}
+                </div>
+            </section>
+
+            {/* ═══ SECTION 3.5: Reality Gap ═══ */}
+            <section className={styles.section}>
+                <h2 className={styles.sectionTitle}>
+                    <ShieldAlert size={20} />
+                    {isEn ? "Reality Gap — Promise vs. Experience" : "Virkelighedskløften — Løfte vs. Oplevelse"}
+                </h2>
+                <p className={styles.sectionDesc}>
+                    {isEn
+                        ? "Critical comparison between officially stated timelines and real user-reported experiences in Lyngby-Taarbæk. Based on interviews and user reports. These discrepancies reveal a systemic pattern where institutional optimism masks structural delays."
+                        : "Kritisk sammenligning af officielt oplyste tidsrammer og borgernes reelle oplevelser i Lyngby-Taarbæk. Baseret på interviews og brugerrapporter. Disse uoverensstemmelser afslører et systemisk mønster, hvor institutionel optimisme maskerer strukturelle forsinkelser."}
+                </p>
+                <div className={styles.gapGrid}>
+                    {realityGap.map((item) => {
+                        const sev = severityLabels[item.severity];
+                        return (
+                            <div key={item.id} className={styles.gapCard}>
+                                <div className={styles.gapHeader}>
+                                    <div className={styles.gapInstitution}>
+                                        <Building2 size={14} />
+                                        {isEn ? item.institutionEn : item.institutionDa}
+                                    </div>
+                                    <span className={styles.gapSeverity} style={{ color: sev.color, backgroundColor: sev.bg }}>
+                                        {isEn ? sev.en : sev.da}
+                                    </span>
+                                </div>
+                                <h3 className={styles.gapProcess}>
+                                    {isEn ? item.processEn : item.processDa}
+                                </h3>
+                                <div className={styles.gapComparison}>
+                                    {/* Official */}
+                                    <div className={styles.gapOfficial}>
+                                        <div className={styles.gapColLabel}>
+                                            <CheckCircle size={13} />
+                                            {isEn ? "Official" : "Officielt"}
+                                        </div>
+                                        <div className={styles.gapValue}>{isEn ? item.officialEn : item.officialDa}</div>
+                                        <div className={styles.gapSource}>{isEn ? item.officialSourceEn : item.officialSourceDa}</div>
+                                    </div>
+                                    {/* Arrow */}
+                                    <div className={styles.gapArrow}>
+                                        <ArrowRight size={20} />
+                                    </div>
+                                    {/* Reality */}
+                                    <div className={styles.gapReality}>
+                                        <div className={styles.gapColLabel}>
+                                            <MessageCircleWarning size={13} />
+                                            {isEn ? "Reported" : "Rapporteret"}
+                                        </div>
+                                        <div className={styles.gapValue} style={{ color: item.color }}>{isEn ? item.realityEn : item.realityDa}</div>
+                                        <div className={styles.gapSource}>{isEn ? item.realitySourceEn : item.realitySourceDa}</div>
+                                    </div>
+                                </div>
+                                <div className={styles.gapFactor} style={{ backgroundColor: item.color + "10", color: item.color }}>
+                                    <AlertTriangle size={14} />
+                                    {isEn ? item.factorEn : item.factorDa}
+                                </div>
+                                <p className={styles.gapNotes}>{isEn ? item.notesEn : item.notesDa}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+            </section>
+
+            {/* ═══ SECTION 3.75: Municipal Benchmarking ═══ */}
+            <section className={styles.section}>
+                <h2 className={styles.sectionTitle}>
+                    <MapPinned size={20} />
+                    {isEn ? "Municipal Benchmarking — Lyngby-Taarbæk vs. Copenhagen vs. Denmark" : "Kommunal Benchmarking — Lyngby-Taarbæk vs. København vs. Danmark"}
+                </h2>
+                <p className={styles.sectionDesc}>
+                    {isEn
+                        ? "Side-by-side comparison based on real published data from kk.dk, ltk.dk, IBOS, CSV, Dansk Blindesamfund, and parliamentary hearings. Reveals what Copenhagen does better and what structural gaps exist in Lyngby-Taarbæk."
+                        : "Sammenligning side-om-side baseret på reelle offentliggjorte data fra kk.dk, ltk.dk, IBOS, CSV, Dansk Blindesamfund og Folketingets høringer. Afslører hvad København gør bedre og hvilke strukturelle huller der eksisterer i Lyngby-Taarbæk."}
+                </p>
+
+                {/* Comparison Table */}
+                <div className={styles.benchTable}>
+                    <div className={styles.benchHeaderRow}>
+                        <div className={styles.benchDimCol}>{isEn ? "Dimension" : "Dimension"}</div>
+                        <div className={styles.benchCol}>
+                            <MapPinned size={13} />
+                            Lyngby-Taarbæk
+                        </div>
+                        <div className={styles.benchCol}>
+                            <Landmark size={13} />
+                            København
+                        </div>
+                        <div className={styles.benchCol}>
+                            <Scale size={13} />
+                            {isEn ? "Denmark (national)" : "Danmark (nationalt)"}
+                        </div>
+                    </div>
+                    {benchmarkDimensions.map((dim) => {
+                        const scoreIcon = (score) => {
+                            if (score === "good") return <ThumbsUp size={13} style={{ color: "#38a169" }} />;
+                            if (score === "poor") return <ThumbsDown size={13} style={{ color: "#e53e3e" }} />;
+                            return <Minus size={13} style={{ color: "#d69e2e" }} />;
+                        };
+                        const scoreBg = (score) => {
+                            if (score === "good") return "#f0fff4";
+                            if (score === "poor") return "#fff5f5";
+                            return "#fffff0";
+                        };
+                        return (
+                            <div key={dim.id} className={styles.benchRow}>
+                                <div className={styles.benchDimLabel}>
+                                    {isEn ? dim.dimEn : dim.dimDa}
+                                </div>
+                                <div className={styles.benchCell} style={{ backgroundColor: scoreBg(dim.lyngbyScore) }}>
+                                    <span className={styles.benchCellIcon}>{scoreIcon(dim.lyngbyScore)}</span>
+                                    <span>{isEn ? dim.lyngbyEn : dim.lyngbyDa}</span>
+                                </div>
+                                <div className={styles.benchCell} style={{ backgroundColor: scoreBg(dim.cphScore) }}>
+                                    <span className={styles.benchCellIcon}>{scoreIcon(dim.cphScore)}</span>
+                                    <span>{isEn ? dim.cphEn : dim.cphDa}</span>
+                                </div>
+                                <div className={styles.benchCell} style={{ backgroundColor: scoreBg(dim.dkScore) }}>
+                                    <span className={styles.benchCellIcon}>{scoreIcon(dim.dkScore)}</span>
+                                    <span>{isEn ? dim.dkEn : dim.dkDa}</span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Key Insights */}
+                <div className={styles.insightsGrid}>
+                    {benchmarkInsights.map((group, gi) => {
+                        const isGood = group.type === "better";
+                        const isBad = group.type === "worse";
+                        const accent = isGood ? "#38a169" : isBad ? "#e53e3e" : "#d69e2e";
+                        const bg = isGood ? "#f0fff4" : isBad ? "#fff5f5" : "#fffff0";
+                        const IconComp = isGood ? ThumbsUp : isBad ? ThumbsDown : AlertTriangle;
+                        return (
+                            <div key={gi} className={styles.insightBlock} style={{ borderLeftColor: accent }}>
+                                <h3 className={styles.insightBlockTitle} style={{ color: accent }}>
+                                    <IconComp size={16} />
+                                    {isEn ? group.typeEn : group.typeDa}
+                                </h3>
+                                <ul className={styles.insightList}>
+                                    {group.items.map((item, i) => (
+                                        <li key={i} style={{ backgroundColor: bg }}>
+                                            {isEn ? item.en : item.da}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         );
                     })}

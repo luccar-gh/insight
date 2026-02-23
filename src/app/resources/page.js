@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import styles from "./page.module.css";
 import { Search, ExternalLink, BookOpen, Wrench, Link2, Phone, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
@@ -97,6 +98,17 @@ const typeColors = {
 
 export default function ResourcesPage() {
     const { t, lang } = useLang();
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const filteredResources = useMemo(() => {
+        if (!searchQuery.trim()) return resources;
+        const q = searchQuery.toLowerCase();
+        return resources.filter(r => {
+            const title = lang === "en" ? r.titleEn : r.title;
+            const desc = lang === "en" ? r.descEn : r.desc;
+            return title.toLowerCase().includes(q) || desc.toLowerCase().includes(q) || r.url.toLowerCase().includes(q);
+        });
+    }, [searchQuery, lang]);
 
     return (
         <div className={styles.container}>
@@ -112,12 +124,14 @@ export default function ResourcesPage() {
                         placeholder={t("searchResources")}
                         className={styles.searchInput}
                         aria-label="Search resources"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
             </header>
 
             <div className={styles.grid}>
-                {resources.map((res, index) => {
+                {filteredResources.map((res, index) => {
                     const Icon = res.icon;
                     const colors = typeColors[res.type];
                     return (

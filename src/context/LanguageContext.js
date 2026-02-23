@@ -14,6 +14,7 @@ const translations = {
         documents: "Dokumenter",
         accessibility: "Tilgængelighed",
         resources: "Ressourcer",
+        press: "Presse",
         insights: "Insight",
         accessibilityFirst: "♿ Tilgængelighed Først",
         copyright: "© 2026 Public Data Denmark",
@@ -85,6 +86,21 @@ const translations = {
         link: "Link",
         contact: "Kontakt",
 
+        // Stakeholders page
+        stakeholders: "Aktører",
+        stakeholdersTitle: "Nøgleaktører — Kongens Lyngby",
+        stakeholdersSubtitle: "De vigtigste lokale institutioner i støttesystemet for blinde og svagtseende borgere i Lyngby-Taarbæk Kommune.",
+        searchStakeholders: "Søg aktører...",
+        role: "Rolle",
+        services: "Ydelser",
+        relevance: "Relevans for synstab",
+        contactInfo: "Kontaktinformation",
+        hours: "Åbningstider",
+        phone: "Telefon",
+        address: "Adresse",
+        jurisdiction: "Dækningsområde",
+        referral: "Henvisning",
+
         // Document types
         typeLegislation: "Lovgivning",
         typeReport: "Rapport",
@@ -100,6 +116,7 @@ const translations = {
         documents: "Documents",
         accessibility: "Accessibility",
         resources: "Resources",
+        press: "Press",
         insights: "Insight",
         accessibilityFirst: "♿ Accessibility First",
         copyright: "© 2026 Public Data Denmark",
@@ -170,6 +187,21 @@ const translations = {
         tool: "Tool",
         link: "Link",
         contact: "Contact",
+
+        // Stakeholders page
+        stakeholders: "Stakeholders",
+        stakeholdersTitle: "Key Stakeholders — Kongens Lyngby",
+        stakeholdersSubtitle: "The key local institutions in the support system for blind and visually impaired citizens in Lyngby-Taarbæk Municipality.",
+        searchStakeholders: "Search stakeholders...",
+        role: "Role",
+        services: "Services",
+        relevance: "Relevance to vision loss",
+        contactInfo: "Contact Information",
+        hours: "Opening hours",
+        phone: "Phone",
+        address: "Address",
+        jurisdiction: "Coverage area",
+        referral: "Referral",
 
         // Document types
         typeLegislation: "Legislation",

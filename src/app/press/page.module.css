@@ -1,0 +1,236 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    max-width: 680px;
+}
+
+.countBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 99px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+/* ═══ Bento Grid ═══ */
+.bentoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    grid-auto-flow: dense;
+}
+
+@media (min-width: 640px) {
+    .bentoGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .bentoGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .bentoGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ═══ Card Sizes ═══ */
+.cardLarge {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+@media (min-width: 640px) {
+    .cardLarge {
+        grid-column: span 2;
+    }
+}
+
+.cardMedium {
+    grid-column: span 1;
+}
+
+.cardSmall {
+    grid-column: span 1;
+}
+
+/* ═══ Card Base ═══ */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    border-left: 3px solid var(--card-accent);
+    cursor: pointer;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    opacity: 0;
+    background: linear-gradient(135deg, var(--card-accent), transparent 70%);
+    transition: opacity 0.25s;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::after {
+    opacity: 0.04;
+}
+
+/* ═══ Card Content ═══ */
+.cardTop {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.cardIcon {
+    width: 34px;
+    height: 34px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cardMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.cardSource {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardDate {
+    font-size: 0.68rem;
+    color: var(--muted-light);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.cardExternal {
+    color: var(--muted-light);
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.card:hover .cardExternal {
+    opacity: 0.7;
+}
+
+.cardTitle {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.cardDesc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cardLarge .cardDesc {
+    -webkit-line-clamp: 6;
+}
+
+.cardTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+}
+
+.tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 99px;
+    border: 1px solid;
+    background: transparent;
+}

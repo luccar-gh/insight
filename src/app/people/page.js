@@ -12,7 +12,7 @@ const people = [
     { name: "Jesper Holst", role: "Formand, DøvBlinde Danmark", roleEn: "Chairman, DeafBlind Denmark", count: 45, tag: "Ledelse" },
     { name: "Kirsten Brøndum", role: "Socialrådgiver, IBOS", roleEn: "Social Worker, IBOS", count: 38, tag: "Fagperson" },
     { name: "Lars Søndergaard", role: "Synspædagog, Kennedy Centret", roleEn: "Vision Pedagogue, Kennedy Center", count: 62, tag: "Fagperson" },
-    { name: "Mette Jensen", role: "Rehabiliteringskonsulent, DAB", roleEn: "Rehabilitation Consultant, DAB", count: 55, tag: "Rådgiver" },
+    { name: "Mette Jensen", role: "Rehabiliteringskonsulent, DBS", roleEn: "Rehabilitation Consultant, DBS", count: 55, tag: "Rådgiver" },
     { name: "Peter Ravnborg", role: "IT-specialist, Nota", roleEn: "IT Specialist, Nota", count: 72, tag: "Teknologi" },
     { name: "Anette Poulsen", role: "Tilgængelighedsekspert, DPOD", roleEn: "Accessibility Expert, DPOD", count: 48, tag: "Ekspert" },
     { name: "Henrik Madsen", role: "Øjenlæge, Rigshospitalet", roleEn: "Ophthalmologist, Rigshospitalet", count: 95, tag: "Medicinsk" },

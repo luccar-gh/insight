@@ -198,3 +198,245 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
+
+/* ═══ Problem Statement Banner ═══ */
+.problemBanner {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid #e53e3e;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.problemQuote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.problemIcon {
+  color: #e53e3e;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.problemQuote blockquote {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.5;
+  font-style: italic;
+  margin: 0;
+}
+
+.problemStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.problemStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 100px;
+}
+
+.problemStatValue {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+}
+
+.problemStatLabel {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.problemStatDivider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+}
+
+@media (max-width: 640px) {
+  .problemStatDivider {
+    display: none;
+  }
+}
+
+.problemWarnings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.problemWarning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #dd6b20;
+  border: 1px solid #dd6b20;
+  padding: 0.2rem 0.55rem;
+  border-radius: 99px;
+}
+
+/* ═══ Preliminary System Analysis ═══ */
+.analysisGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .analysisGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .analysisGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.analysisCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid;
+  border-radius: 0.75rem;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: all 0.2s ease;
+}
+
+.analysisCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.08);
+}
+
+.analysisCardTop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.analysisCardIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.analysisCardLabel {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid;
+  padding: 0.1rem 0.4rem;
+  border-radius: 99px;
+}
+
+.analysisCardTitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.3;
+}
+
+.analysisCardDesc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ═══ Milestone Timeline ═══ */
+.milestoneTrack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .milestoneTrack {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.milestoneItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.milestoneBar {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .milestoneBar {
+    border-radius: 0;
+  }
+
+  .milestoneItem:first-child .milestoneBar {
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  .milestoneItem:last-child .milestoneBar {
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+}
+
+.milestoneWeeks {
+  font-size: 0.72rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.milestoneLabel {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.35;
+  padding: 0 0.25rem;
+}
+
+.milestoneDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--foreground);
+}

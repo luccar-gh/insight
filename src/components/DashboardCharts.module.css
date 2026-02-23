@@ -1,0 +1,114 @@
+/* ═══ Dashboard Charts Grid ═══ */
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .chartsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.chartCardWide {
+    grid-column: 1 / -1;
+}
+
+.chartCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.chartCard:hover {
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.chartHeader {
+    padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.chartBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 99px;
+    margin-bottom: 0.5rem;
+    border: 1px solid currentColor;
+}
+
+.chartTitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+}
+
+.chartSubtitle {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.chartBody {
+    padding: 0.75rem 0.75rem 0.5rem;
+}
+
+.chartInsight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    background: #fff5f5;
+    color: #c53030;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.45;
+    border-top: 1px solid var(--border);
+}
+
+.chartInsight svg {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+/* ═══ Tooltip ═══ */
+.tooltip {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.85rem;
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.15);
+}
+
+.tooltipLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-bottom: 0.35rem;
+}
+
+.tooltipRow {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+.tooltipDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

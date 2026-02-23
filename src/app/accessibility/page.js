@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import styles from "./page.module.css";
 import { Search, CheckCircle, Clock, Award, Accessibility as AccessibilityIcon, ArrowRight } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
@@ -82,6 +83,17 @@ const statusColors = {
 
 export default function AccessibilityPage() {
     const { t, lang } = useLang();
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const filteredPrograms = useMemo(() => {
+        if (!searchQuery.trim()) return programs;
+        const q = searchQuery.toLowerCase();
+        return programs.filter(p => {
+            const name = lang === "en" ? p.nameEn : p.name;
+            const desc = lang === "en" ? p.descEn : p.desc;
+            return name.toLowerCase().includes(q) || desc.toLowerCase().includes(q) || p.org.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+        });
+    }, [searchQuery, lang]);
 
     return (
         <div className={styles.container}>
@@ -97,6 +109,8 @@ export default function AccessibilityPage() {
                         placeholder={t("searchPrograms")}
                         className={styles.searchInput}
                         aria-label="Search programs"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
             </header>
@@ -114,7 +128,7 @@ export default function AccessibilityPage() {
             </div>
 
             <div className={styles.grid}>
-                {programs.map((program, index) => {
+                {filteredPrograms.map((program, index) => {
                     const StatusIcon = statusIcons[program.status];
                     const colors = statusColors[program.status];
                     return (

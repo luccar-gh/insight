@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Search, Globe, Menu, Accessibility, Languages } from "lucide-react";
 import styles from "./TopBar.module.css";
 import { useLang } from "@/context/LanguageContext";
@@ -26,10 +27,10 @@ export default function TopBar({ onMenuClick }) {
             </div>
 
             <div className={styles.right}>
-                <a href="#" className={styles.iconLink} aria-label="Accessibility">
+                <Link href="/accessibility" className={styles.iconLink} aria-label="Accessibility">
                     <Accessibility size={20} />
-                </a>
-                <a href="#" className={styles.iconLink} aria-label="Website">
+                </Link>
+                <a href="https://ibos.dk" className={styles.iconLink} aria-label="Website" target="_blank" rel="noopener noreferrer">
                     <Globe size={20} />
                 </a>
                 <button

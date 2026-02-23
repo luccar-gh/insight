@@ -11,7 +11,9 @@ import {
   BookOpen,
   Eye,
   X,
-  Lightbulb
+  Lightbulb,
+  MapPin,
+  Newspaper
 } from "lucide-react";
 import styles from "./Sidebar.module.css";
 import { useLang } from "@/context/LanguageContext";
@@ -23,10 +25,12 @@ export default function Sidebar({ isOpen, onClose }) {
   const menuItems = [
     { name: t("dashboard"), icon: LayoutDashboard, href: "/" },
     { name: t("organizations"), icon: Building2, href: "/organizations", count: "12" },
+    { name: t("stakeholders"), icon: MapPin, href: "/stakeholders", count: "6" },
     { name: t("people"), icon: Users, href: "/people", count: "340+" },
     { name: t("documents"), icon: FileText, href: "/documents", count: "1,850" },
     { name: t("accessibility"), icon: Accessibility, href: "/accessibility", count: "95" },
     { name: t("resources"), icon: BookOpen, href: "/resources", count: "210" },
+    { name: t("press"), icon: Newspaper, href: "/press", count: "12" },
     { name: t("insights"), icon: Lightbulb, href: "/insights", count: "" },
   ];
 
