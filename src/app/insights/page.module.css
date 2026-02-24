@@ -656,3 +656,97 @@
     padding-top: 0.75rem;
     border-top: 1px solid var(--border);
 }
+
+@media (max-width: 480px) {
+    .container {
+        gap: 1.75rem;
+    }
+
+    .title {
+        font-size: 1.35rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.05rem;
+    }
+
+    .layerCard {
+        padding: 1.15rem;
+    }
+
+    .layerIcon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .layerLabel {
+        font-size: 0.9rem;
+    }
+
+    .timeline {
+        padding: 1rem;
+    }
+
+    .timelineItem {
+        min-width: 140px;
+    }
+
+    .timelineStep {
+        width: 30px;
+        height: 30px;
+        font-size: 0.78rem;
+    }
+
+    .timelineName {
+        font-size: 0.72rem;
+    }
+
+    .gapCard {
+        padding: 1.15rem;
+    }
+
+    .gapComparison {
+        padding: 0.85rem;
+        gap: 0.75rem;
+    }
+
+    .gapValue {
+        font-size: 1.1rem;
+    }
+
+    .gapSource {
+        font-size: 0.68rem;
+    }
+
+    .conflictCard {
+        padding: 1rem 1.15rem;
+    }
+
+    .conflictLayers {
+        font-size: 0.78rem;
+    }
+
+    .conflictDesc {
+        font-size: 0.78rem;
+    }
+
+    .recCard {
+        padding: 1.15rem;
+    }
+
+    .insightBlock {
+        padding: 1rem;
+    }
+
+    .sourcesFooter {
+        padding: 1.15rem;
+    }
+
+    .sourcesList span {
+        font-size: 0.65rem;
+    }
+}

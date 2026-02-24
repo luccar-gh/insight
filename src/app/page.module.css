@@ -440,3 +440,87 @@
   font-weight: 800;
   color: var(--foreground);
 }
+
+/* ═══ Mobile Overrides ═══ */
+@media (max-width: 480px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .insightsBanner {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .insightsBannerIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .insightsBannerContent h3 {
+    font-size: 0.85rem;
+  }
+
+  .insightsBannerContent p {
+    font-size: 0.72rem;
+  }
+
+  .problemBanner {
+    padding: 1.15rem;
+    gap: 1rem;
+  }
+
+  .problemStatValue {
+    font-size: 1.15rem;
+  }
+
+  .problemStatLabel {
+    font-size: 0.68rem;
+  }
+
+  .problemStats {
+    gap: 0.75rem;
+  }
+
+  .problemStat {
+    min-width: 80px;
+  }
+
+  .problemWarning {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.95rem;
+  }
+
+  .analysisCard {
+    padding: 1rem;
+  }
+
+  .analysisCardTitle {
+    font-size: 0.82rem;
+  }
+
+  .analysisCardDesc {
+    font-size: 0.75rem;
+  }
+
+  .milestoneLabel {
+    font-size: 0.7rem;
+  }
+
+  .mainGrid {
+    gap: 1.5rem;
+  }
+}

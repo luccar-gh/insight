@@ -112,3 +112,26 @@
     border-radius: 50%;
     flex-shrink: 0;
 }
+
+@media (max-width: 480px) {
+    .chartHeader {
+        padding: 1rem 1rem 0.35rem;
+    }
+
+    .chartTitle {
+        font-size: 0.88rem;
+    }
+
+    .chartSubtitle {
+        font-size: 0.72rem;
+    }
+
+    .chartBody {
+        padding: 0.5rem 0.25rem 0.25rem;
+    }
+
+    .chartInsight {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.72rem;
+    }
+}

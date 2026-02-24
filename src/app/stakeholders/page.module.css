@@ -359,3 +359,40 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .cardIcon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+    }
+
+    .cardName {
+        font-size: 1.05rem;
+    }
+
+    .relationshipMap {
+        padding: 1.15rem;
+    }
+
+    .flowNode {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .flowAction {
+        white-space: normal;
+    }
+}
